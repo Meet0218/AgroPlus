@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import Header from "./Components3/Header";
-// import "./styles/productdetail.css";
 import API_URL from "../constants";
 import io from "socket.io-client";
 import "./groupchat.css";
+
 let socket;
 
 function Groupchat() {
   const [msg, setMsg] = useState("");
   const [msgs, setMsgs] = useState([]);
   const { productId } = useParams();
+  const userName = localStorage.getItem("userName"); // Fetch the logged-in user's name
 
   useEffect(() => {
     socket = io(API_URL);
@@ -27,9 +27,7 @@ function Groupchat() {
 
   useEffect(() => {
     socket.on("getMsg", (data) => {
-      const filteredData = data.filter((item) => {
-        return item.productId === productId;
-      });
+      const filteredData = data.filter((item) => item.productId === productId);
       setMsgs(filteredData);
     });
   }, [productId]);
@@ -41,7 +39,7 @@ function Groupchat() {
     }
 
     const data = {
-      username: localStorage.getItem("userName"),
+      username: userName,
       msg,
       productId,
     };
@@ -53,33 +51,41 @@ function Groupchat() {
 
   return (
     <div className="groupchat-container">
-      {/* <Header /> */}
-
       <div className="groupchat">
         <h4>Group Chat</h4>
         {msgs.map((item, index) => (
           <div
             key={index}
             style={{
-              textAlign: item.username === localStorage.getItem("userName") ? "right" : "left",
+              textAlign: item.username === userName ? "right" : "left",
               margin: "5px",
               padding: "5px",
               borderRadius: "5px",
+              backgroundColor: item.username === userName ? "#DCF8C6" : "#FFF",
+              display: "flex",
+              flexDirection: "column",
+              alignItems:
+                item.username === userName ? "flex-end" : "flex-start",
             }}
           >
-            {item.username !== localStorage.getItem("userName") && ( // Render username only for other users' messages
-              <span style={{ fontWeight: "bold", color: "blue", marginRight: "5px" }}> {/* Change color as per your preference */}
+            {item.username !== userName && (
+              <span
+                style={{
+                  fontWeight: "bold",
+                  color: "blue",
+                  marginRight: "5px",
+                }}
+              >
                 {item.username}:
               </span>
             )}
-            <span style={{ color: item.username === localStorage.getItem("userName") ? "green" : "black" }}> {/* Change color as per your preference */}
+            <span
+              style={{ color: item.username === userName ? "green" : "black" }}
+            >
               {item.msg}
             </span>
           </div>
         ))}
-
-
-
         <input
           value={msg}
           onChange={(e) => setMsg(e.target.value)}
@@ -92,7 +98,6 @@ function Groupchat() {
           SEND
         </button>
       </div>
-
     </div>
   );
 }
