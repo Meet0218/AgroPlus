@@ -120,7 +120,6 @@ function Signup() {
               value={password}
               placeholder="Password"
               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$"
-              // title="Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."
               onChange={(e) => setPassword(e.target.value)}
             />
             <br></br>
@@ -134,7 +133,7 @@ function Signup() {
             </button>
             <p className="newuser2">
               New User ?{" "}
-              <Link className="signup-link2" to="/login">
+              <Link className="signup-link2 " to="/login">
                 {" "}
                 Login{" "}
               </Link>

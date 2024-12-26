@@ -1,93 +1,64 @@
 import React, { useState } from "react";
-import { Link, useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import LoginHeader from "./LoginHeader";
 import axios from "axios";
-import API_URL from "../constants";
 import { ToastContainer, toast } from "react-toastify";
 import "./styles/login.css";
+
 function Login() {
   const navigate = useNavigate();
-
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleApi = (e) => {
+  const handleApi = async (e) => {
     e.preventDefault();
-    const url = API_URL + "/login";
-    const data = { email, password };
-    axios
-      .post(url, data)
-      .then((res) => {
-        if (res.data.message && res.data.token) {
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("userId", res.data.userId);
-          localStorage.setItem("userName", res.data.username);
-          localStorage.setItem("email", res.data.email);
-  
-          toast("Login Successfully", {
-            onClose: () => navigate("/"),
-            autoClose: 1500,
-          });
-        } else {
-          // Handle unsuccessful login here
-          toast.error("Login Failed");
-        }
-      })
-      .catch((err) => {
-        alert("SERVER ERR");
-      });
+    try {
+      const res = await axios.post("/login", { email, password });
+      if (res.data.message && res.data.token) {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userId", res.data.userId);
+        toast.success("Login Successful", {
+          onClose: () => navigate("/"),
+          autoClose: 1500,
+        });
+      } else {
+        toast.error("Invalid Credentials");
+      }
+    } catch {
+      toast.error("Server Error");
+    }
   };
-  
 
   return (
     <div className="box3">
-      <div className="loginHeader">
-        <LoginHeader />
-      </div>
-
+      <LoginHeader />
       <div className="loginform3">
-        <img className="logo3" src="images/Secure login-bro.png" />
-
-        <h3 className="login-title3"> Welcome to Login Page </h3>
-        <br></br>
+        <img className="logo3" src="images/Secure login-bro.png" alt="Login" />
+        <h3 className="login-title3">Welcome to Login Page</h3>
         <form className="login-form3" onSubmit={handleApi}>
-          Username*
-          <br></br>
+          <label>Email*</label>
           <input
             className="userinput3"
             type="text"
             placeholder="Email"
             value={email}
             required
-            title="Enter Valid Email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <br></br>
-          <br></br>Password*<br></br>
+          <label>Password*</label>
           <input
             className="userinput3"
             type="password"
             placeholder="Password"
             value={password}
             required
-            title="Enter valid password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <br></br>
-          <button className="login-btn3" type="submit">
-            {" "}
-            LOGIN{" "}
-          </button>
-          <br></br>
+          <button className="login-btn3">LOGIN</button>
           <p className="newuser3">
-            New User ?{" "}
+            New User?{" "}
             <NavLink className="signup-link3" to="/signup">
-              SignUp{" "}
+              Sign Up
             </NavLink>
           </p>
         </form>

@@ -1,124 +1,171 @@
-.logo2 {
-    height: 150px;
-    width: 150px;
-    margin-left: 130px;
-    margin-top: 5px;
+/* General styles for the signup page */
+.box2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 200px;
+    height: 100vh;
 }
 
 
-.loginform2 {
-    height: auto;
-    width: 500px;
-    /* margin-top: 20px; */
-    border-bottom: 3px solid grey;
-    border-top: 3px solid grey;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    border-radius: 8px;
-    padding: 5px 30px 5px 30px;
-    /* background-color: #07695D; */
+/*This is added to adjust the styling of loginheader*/
+/* Positioning for the LoginHeader */
+.loginHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #30e5d0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
 
+/* Adding margin to forms to avoid overlap with LoginHeader */
+.loginform2,
+.loginform3 {
+    margin-top: 100px;
+}
+
+/* Responsive signup form container */
+.loginform2 {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 3px solid grey;
+    border-radius: 8px;
+    background: hsla(181, 98%, 50%, 1);
+    background: linear-gradient(90deg,
+            hsla(181, 98%, 50%, 1) 0%,
+            hsla(0, 0%, 100%, 1) 0%,
+            hsla(175, 60%, 55%, 1) 100%);
+    background: -moz-linear-gradient(90deg,
+            hsla(181, 98%, 50%, 1) 0%,
+            hsla(0, 0%, 100%, 1) 0%,
+            hsla(175, 60%, 55%, 1) 100%);
+    background: -webkit-linear-gradient(90deg,
+            hsla(181, 98%, 50%, 1) 0%,
+            hsla(0, 0%, 100%, 1) 0%,
+            hsla(175, 60%, 55%, 1) 100%);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px;
     transition: box-shadow 0.1s, transform 0.1s;
     position: relative;
-    top: 80px;
-    height: 90vh;
-    left: 33%;
-    background: hsla(181, 98%, 50%, 1);
+    top: 20px;
+}
 
-    background: linear-gradient(90deg, hsla(181, 98%, 50%, 1) 0%, hsla(0, 0%, 100%, 1) 0%, hsla(175, 60%, 55%, 1) 100%);
+.logo2 {
+    width: 150px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
 
-    background: -moz-linear-gradient(90deg, hsla(181, 98%, 50%, 1) 0%, hsla(0, 0%, 100%, 1) 0%, hsla(175, 60%, 55%, 1) 100%);
-
-    background: -webkit-linear-gradient(90deg, hsla(181, 98%, 50%, 1) 0%, hsla(0, 0%, 100%, 1) 0%, hsla(175, 60%, 55%, 1) 100%);
-
+.login-title2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .userinput2 {
-    height: 40px;
-    border-radius: 6px;
-    border: 0.5px solid grey;
     width: 100%;
-    /* transition: transform 300ms ease-in-out; */
-    transition: 600ms ease-in-out;
-    /* margin-top: 8px; */
+    padding: 10px;
+    margin-top: 7px;
+    margin-bottom: 9px;
+    border-radius: 4px;
+    border: 1px solid grey;
     background-color: whitesmoke;
-    padding-left: 20px;
+    transition: transform 300ms ease-in-out;
+}
 
+.userinput2:focus {
+    outline: none;
+    border-color: #30e5d0;
+    transform: scale(1.02);
 }
 
 .login-btn2 {
-    background-color: #30E5D0;
-    border-radius: 12px;
+    width: 100%;
+    padding: 12px;
+    background-color: #30e5d0;
+    border-radius: 8px;
     color: #000;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 10px 15px;
-    text-align: center;
-    transition: 200ms;
-    width: 80%;
-    box-sizing: border-box;
-    border: 0;
     font-size: 16px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    margin-top: 20px;
-    align-items: center;
-    margin-left: 10%;
-
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 200ms ease;
 }
 
-.login-btn2:not(:disabled):hover,
-.login-btn2:not(:disabled):focus {
-    outline: 0;
+.login-btn2:hover {
+    background-color: #008575;
     color: white;
-    background: white;
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, .2), 0 3px 8px 0 rgba(0, 0, 0, .15);
-}
-
-.login-btn2:disabled {
-    filter: saturate(0.2) opacity(0.5);
-    -webkit-filter: saturate(0.2) opacity(0.5);
-    cursor: not-allowed;
-}
-
-.loginform2:hover {
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
-}
-
-.userinput2:hover {
-    background: rgb(247, 244, 244);
-    transform: scale(1.1, 1.1);
-    border: 2px #eee solid;
 }
 
 .newuser2 {
     text-align: center;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    font-size: 16px;
+    margin-top: 20px;
 }
 
 .signup-link2 {
-    text-decoration: none;
     color: #008575;
+    text-decoration: none;
 }
 
 .signup-link2:hover {
-    color: #30E5D0;
+    color: #30e5d0;
 }
 
-.login-container {
-    display: flex;
-    align-items: center;
+/* Media Queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .loginform2 {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .logo2 {
+        width: 120px;
+    }
+
+    .login-title2 {
+        font-size: 20px;
+    }
+
+    .userinput2 {
+        font-size: 14px;
+    }
+
+    .login-btn2 {
+        font-size: 14px;
+        padding: 10px;
+    }
 }
 
-/* .box2{
-    background: hsla(181, 98%, 50%, 1);
+@media screen and (max-width: 480px) {
+    .loginform2 {
+        width: 100%;
+        padding: 10px;
+    }
 
-    background: linear-gradient(90deg, hsla(181, 98%, 50%, 1) 0%, hsla(0, 0%, 100%, 1) 0%, hsla(175, 60%, 55%, 1) 100%);
+    .logo2 {
+        width: 100px;
+    }
 
-    background: -moz-linear-gradient(90deg, hsla(181, 98%, 50%, 1) 0%, hsla(0, 0%, 100%, 1) 0%, hsla(175, 60%, 55%, 1) 100%);
+    .login-title2 {
+        font-size: 18px;
+    }
 
-    background: -webkit-linear-gradient(90deg, hsla(181, 98%, 50%, 1) 0%, hsla(0, 0%, 100%, 1) 0%, hsla(175, 60%, 55%, 1) 100%);
- height: 100vh  ;
-} */
+    .userinput2 {
+        font-size: 12px;
+    }
+
+    .login-btn2 {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .newuser2 {
+        font-size: 14px;
+    }
+}
