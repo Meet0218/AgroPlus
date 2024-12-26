@@ -76,7 +76,7 @@ function Signup() {
               type="text"
               required
               value={username}
-              placeholder="your username"
+              placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
             />
             <br></br>
@@ -88,7 +88,7 @@ function Signup() {
               type="tel"
               required
               pattern="[0-9]{10}"
-              placeholder="your mobile"
+              placeholder="Mobile"
               title="Enter a 10-digit phone number"
               value={mobile}
               onChange={(e) => setMobile(e.target.value)}
@@ -103,8 +103,8 @@ function Signup() {
               type="email"
               required
               value={email}
-              placeholder="your email"
-              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+              placeholder="Email"
+              // pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
               title="Enter a valid email address"
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -118,9 +118,9 @@ function Signup() {
               required
               minLength="8"
               value={password}
-              placeholder="your password"
+              placeholder="Password"
               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$"
-              title="Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+              // title="Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."
               onChange={(e) => setPassword(e.target.value)}
             />
             <br></br>

@@ -10,11 +10,12 @@ function Login() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleApi = (e) => {
     e.preventDefault();
     const url = API_URL + "/login";
-    const data = { username, password };
+    const data = { email, password };
     axios
       .post(url, data)
       .then((res) => {
@@ -22,6 +23,7 @@ function Login() {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("userId", res.data.userId);
           localStorage.setItem("userName", res.data.username);
+          localStorage.setItem("email", res.data.email);
   
           toast("Login Successfully", {
             onClose: () => navigate("/"),
@@ -55,12 +57,12 @@ function Login() {
           <input
             className="userinput3"
             type="text"
-            placeholder="your username"
-            value={username}
+            placeholder="Email"
+            value={email}
             required
-            title="Enter valid username"
+            title="Enter Valid Email"
             onChange={(e) => {
-              setUsername(e.target.value);
+              setEmail(e.target.value);
             }}
           />
           <br></br>
@@ -68,7 +70,7 @@ function Login() {
           <input
             className="userinput3"
             type="password"
-            placeholder="your password"
+            placeholder="Password"
             value={password}
             required
             title="Enter valid password"

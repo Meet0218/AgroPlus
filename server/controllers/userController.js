@@ -80,10 +80,10 @@ module.exports.getUserById = (req, res) => {
 
 
 module.exports.login = (req, res) => {
-    const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
 
-    Users.findOne({ username: username })
+    Users.findOne({ email: email })
         .then((result) => {
             if (!result) {
                 res.send({ message: 'user not found.' })
